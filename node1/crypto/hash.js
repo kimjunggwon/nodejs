@@ -11,5 +11,4 @@ console.log('base64: ', crypto.createHash('sha512').update('다른 비밀번호'
      - update(문자열) : 변환할 문자열을 넣습니다.
      - digest(인코딩) : 인코딩할 알고리즘을 넣습니다.
       * 인코딩 알고리즘 : base64(주 사용), hex, latin1
-
 */
