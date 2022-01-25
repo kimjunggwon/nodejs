@@ -4,7 +4,7 @@
   "description": "시퀄라이즈를 배우자",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app"
+    "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +16,6 @@
     "nunjucks": "^3.2.3",
     "sequelize": "^6.14.0",
     "sequelize-cli": "^6.4.1"
-  }
+  },
+  "devDependencies": {}
 }
