@@ -18,8 +18,8 @@ module.exports = class Comment extends Sequelize.Model {
             modelName: 'Comment',
             tableName: 'comments',
             paranoid: false,
-            charset: 'utf8md4',
-            collate: 'utf8md4_general_ci',
+            charset: 'utf8mb4',
+            collate: 'utf8mb4_general_ci',
         });
     }
 
