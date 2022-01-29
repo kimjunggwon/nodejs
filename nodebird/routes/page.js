@@ -1,8 +1,7 @@
 const express = require('express');
-const { isLoggedin, isNotLoggedin } = require('./middlewares');
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const router = express.Router();
-
 router.use((req, res, next) => {
     res.locals.user = req.user,
     res.locals.followerCount = 0;
@@ -15,7 +14,7 @@ router.get('/profile', isLoggedIn, (req, res) => {
     res.render('profile', { title: '내 정보 - NodeBird' });
 });
 
-router.get('/join', isNotLoggedin, (req, res) => {
+router.get('/join', isNotLoggedIn, (req, res) => {
     res.render('join', { title: '회원가입 - NodeBird' });
 });
 
