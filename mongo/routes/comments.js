@@ -17,3 +17,27 @@ router.post('/', async (req, res, next) => {
         next(err);
     }
 });
+
+router.route('/:id').patch(async (req, res, next) => {
+    try{
+        const result = await Comment.update({
+            _id: req.params.id,
+        }, {
+            comment: req.body.comment,
+        });
+        res.json(result);
+    }catch(err){
+        console.error(err);
+        next(err);
+    }
+}).delete(async (req, res, next) => {
+    try{
+        const result = await Comment.remove({_id: req.params.id});
+        res.json(result);
+    }catch(err){
+        console.error(err);
+        next(err);
+    }
+});
+
+module.exports = router;
