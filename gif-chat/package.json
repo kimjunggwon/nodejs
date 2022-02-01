@@ -14,7 +14,8 @@
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "morgan": "^1.10.0",
-    "nunjucks": "^3.2.3"
+    "nunjucks": "^3.2.3",
+    "ws": "^8.4.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

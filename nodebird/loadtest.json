@@ -17,6 +17,14 @@
             },{
                 "post": {
                     "url": "/auth/login",
+                    "json": {
+                        "email": "test3@naver.com",
+                        "password": "test123"
+                    }
+                }
+            },{
+                "get": {
+                    "url": "/hashtag?hashtag=test1"
                 }
             }
         ]
