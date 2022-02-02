@@ -5,10 +5,10 @@
 <a href="/" id="exit-btn">방 나가기</a>
 <fieldset>
     <legend>채팅 내용</legend>
-    {% for char in chats %}
+    {% for chat in chats %}
         {% if chat.user === user %}
-            <div class="main" style="color:{{chat.user}}">
-                <div>{{chat.user}}</div>
+            <div class="mine" style="color: {{chat.user}}">
+            <div>{{chat.user}}</div>
                 {% if chat.gif %}
                     <img src="/gif/{{chat.gif}}" alt="/gif/{{chat.gif}}">
                 {% else %}
@@ -68,7 +68,7 @@
         }
         const name = document.createElement('div');
         name.textContent = data.user;
-        name.appendChild(name);
+        div.appendChild(name);
         if(data.chat){
             const chat = document.createElement('div');
             chat.textContent = data.chat;
@@ -94,6 +94,18 @@
                 console.error(error);
             });
         }
+    });
+    document.querySelector('#gif').addEventListener('change', function(e){
+        console.log(e.target.files);
+        const formData = new FormDate();
+        formData.append('gif', e.target.files[0]);
+        axios.post('/room/{{room._id}}/gif', formData)
+            .then(() => {
+                e.target.file = null;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     });
 </script>
 {% endblock %}
