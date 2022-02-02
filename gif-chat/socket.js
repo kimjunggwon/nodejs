@@ -1,5 +1,7 @@
 const SocketIO = require('socket.io');
 const axios = require('axios');
+const cookieParser = require('cookie-parser');
+const cookie = require('cookie-signature');
 
 module.exports = (server, app, sessionMiddleware) => {
     const io = SocketIO(server, { path: '/socket.io' });
@@ -8,6 +10,7 @@ module.exports = (server, app, sessionMiddleware) => {
     const chat = io.of('/chat');
 
     io.use((socket, next) => {
+        cookieParser(process.env.COOKIE_SECRET)(socket.request, socket.request.res, next);
         sessionMiddleware(socket.request, socket.request.res, next);
     });
 
@@ -38,7 +41,13 @@ module.exports = (server, app, sessionMiddleware) => {
             const currentRoom = socket.adapter.rooms[roomId];
             const userCount = currentRoom ? currentRoom.length : 0;
             if(userCount === 0){
-                axios.delete(`http://localhost:8005/room/${roomId}`)
+                const signedCookie = req.signedCookies['connect.sid'];
+                const connectSID = cookie.sign(signedCookie, process.env.COOKIE_SECRET);
+                axios.delete(`http://localhost:8005/room/${roomId}`, {
+                        header: {
+                            Cookie: `connect.sid=s%3A${connectSID}`,
+                        },
+                    })
                     .then(() => {
                         console.log('방 제거 요청 성공');
                     }).catch((error) => {

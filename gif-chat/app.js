@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const session      = require('express-session');
 const nunjucks     = require('nunjucks');
 const dotenv       = require('dotenv');
-const ColorHash    = require('color-hash');
+const ColorHash    = require('color-hash').default;
 
 dotenv.config();
 const webSocket = require('./socket');
@@ -56,7 +56,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 
 app.use((req, res, next) => {
-    const error = new Error(`${rqe.method} ${req.url} 라우터가 없습니다.`);
+    const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
     error.status = 404;
     next(error);
 });
