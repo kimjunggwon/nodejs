@@ -32,7 +32,7 @@
         <script>
             document.querySelector('#bid-form').addEventListener('submit', (e) => {
                 e.preventDefault();
-                const errorMessage = querySelector('.error-message');
+                const errorMessage = document.querySelector('.error-message');
                 axios.post('/good/{{good.id}}/bid', {
                     bid: e.target.bid.value,
                     msg: e.target.msg.value,
